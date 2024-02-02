@@ -1,4 +1,5 @@
 using AutoMapper;
+using Core.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -45,6 +46,6 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     //pattern: "{controller=Account}/{action=TestPage}/{id?}");
-    pattern: "{controller=Account}/{action=TestPage}");
+    pattern: "{controller=Product}/{action=Index}");
 
 app.Run();

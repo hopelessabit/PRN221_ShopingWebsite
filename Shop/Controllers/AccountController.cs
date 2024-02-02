@@ -29,22 +29,22 @@ public class AccountController : Controller
     }
 
     //    // POST: AccountController/Create
-    //    [HttpPost]
-    //    [ValidateAntiForgeryToken]
-    //    public async Task<ActionResult> CreateAsync(AccountDTO Account)
-    //    {
-    //        try
-    //        {
-    //            await _service.InsertAsync(Account);
-    //            await _service.CompletedAsync();
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<ActionResult> CreateAsync(AccountDTO Account)
+    {
+        try
+        {
+            await _service.InsertAsync(Account);
+            await _service.CompletedAsync();
 
-    //            return RedirectToAction(nameof(Index));
-    //        }
-    //        catch
-    //        {
-    //            return View();
-    //        }
-    //    }
+            return RedirectToAction(nameof(Index));
+        }
+        catch
+        {
+            return View();
+        }
+    }
 }
 
 
