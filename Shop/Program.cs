@@ -8,10 +8,10 @@ builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 builder.Services.AddTransient(typeof(AccountService), typeof(AccountService));
 builder.Services.AddTransient(typeof(CategoryService), typeof(CategoryService));
 builder.Services.AddTransient(typeof(CustomerService), typeof(CustomerService));
-builder.Services.AddTransient(typeof(OrderDetailRepository), typeof(OrderDetailRepository));
-builder.Services.AddTransient(typeof(OrderRepository), typeof(OrderRepository));
-builder.Services.AddTransient(typeof(ProductRepository), typeof(ProductRepository));
-builder.Services.AddTransient(typeof(SupplierRepository), typeof(SupplierRepository));
+builder.Services.AddTransient(typeof(OrderDetailService), typeof(OrderDetailService));
+builder.Services.AddTransient(typeof(OrderService), typeof(OrderService));
+builder.Services.AddTransient(typeof(ProductService), typeof(ProductService));
+builder.Services.AddTransient(typeof(SupplierService), typeof(SupplierService));
 
 var config = new MapperConfiguration(cfg =>
 {
