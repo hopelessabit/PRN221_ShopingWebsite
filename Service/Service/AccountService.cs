@@ -1,7 +1,6 @@
 ﻿
 using AutoMapper;
 using Core.Entities;
-
 public class AccountService
 {
     private readonly IUnitOfWork _unitOfWork;

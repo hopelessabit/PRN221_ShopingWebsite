@@ -1,4 +1,24 @@
+using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<PMSDbContext>(options =>
+    options.UseSqlServer("Data Source=hopelessabitpc;Initial Catalog=shop;User ID=nmdp;Password=123;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False"));
+builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
+builder.Services.AddTransient(typeof(AccountService), typeof(AccountService));
+builder.Services.AddTransient(typeof(CategoryService), typeof(CategoryService));
+builder.Services.AddTransient(typeof(CustomerService), typeof(CustomerService));
+builder.Services.AddTransient(typeof(OrderDetailRepository), typeof(OrderDetailRepository));
+builder.Services.AddTransient(typeof(OrderRepository), typeof(OrderRepository));
+builder.Services.AddTransient(typeof(ProductRepository), typeof(ProductRepository));
+builder.Services.AddTransient(typeof(SupplierRepository), typeof(SupplierRepository));
+
+var config = new MapperConfiguration(cfg =>
+{
+    cfg.AddProfile(new AutoMapperProfile());
+});
+var mapper = config.CreateMapper();
+builder.Services.AddSingleton(mapper);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -16,12 +36,15 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+
+
 app.UseRouting();
 
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    //pattern: "{controller=Account}/{action=TestPage}/{id?}");
+    pattern: "{controller=Account}/{action=TestPage}");
 
 app.Run();
