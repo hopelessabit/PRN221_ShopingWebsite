@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Infrastucture\Infrastucture.csproj" />
     <ProjectReference Include="..\Repository\Core.csproj" />
   </ItemGroup>
 
