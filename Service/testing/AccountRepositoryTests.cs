@@ -33,8 +33,8 @@ namespace Service.testing
                 // Arrange
                 var accountsData = new List<Account>
             {
-                new Account { AccountId = 1, FullName = "John Doe", UserName = "john_doe", Password = "password123", Type = "User" },
-                new Account { AccountId = 2, FullName = "Jane Doe", UserName = "jane_doe", Password = "password456", Type = "Admin" }
+                new Account { AccountId = 1, FullName = "John Doe", UserName = "john_doe", Password = "password123", Type = "Staff" },
+                new Account { AccountId = 2, FullName = "Jane Doe", UserName = "jane_doe", Password = "password456", Type = "Member" }
                 // Add more test data as needed
             };
 
