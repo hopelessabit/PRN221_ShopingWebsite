@@ -41,7 +41,7 @@ public class AccountRepository : GenericRepository<Account>, IAccountRepository
             return true; 
         }
 
-        return false; // Account not found
+        return false; 
     }
 
     // Remove an account by ID
@@ -55,7 +55,7 @@ public class AccountRepository : GenericRepository<Account>, IAccountRepository
             return true; 
         }
 
-        return false; // Account not found
+        return false; 
     }
 
 }
