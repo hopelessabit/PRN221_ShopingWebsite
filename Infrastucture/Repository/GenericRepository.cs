@@ -52,13 +52,11 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
             return false;
     }
 
-    public async Task<bool> Upsert(T entity)
+    public async Task<bool> Upsert(T entity, int id)
     {
         try
         {
-            var primaryKey = _context.Entry(entity).Property("Id").CurrentValue;
-
-            var existingEntity = await dbSet.FindAsync(primaryKey);
+            var existingEntity = await dbSet.FindAsync(id);
 
             if (existingEntity != null)
             {
@@ -79,6 +77,6 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
             _logger.LogError(ex, "Error occurred while upserting entity.");
             return false;
         }
-    }
 
+    }
 }

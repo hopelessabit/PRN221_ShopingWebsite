@@ -7,5 +7,5 @@ public interface IGenericRepository<T> where T : class
     IEnumerable<T> Find(Expression<Func<T, bool>> expression);
     Task<bool> Add(T entity);
     Task<bool> Remove(int id);
-    Task<bool> Upsert(T entity);
+    Task<bool> Upsert(T entity, int id);
 }
