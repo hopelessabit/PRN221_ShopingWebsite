@@ -29,6 +29,16 @@ public class ProductService
         return await _unitOfWork.Product.Add(project);
     }
 
+    public async Task<bool> UpdateProductAsync(ProductDTO projectDTO)
+    {
+        var project = _mapper.Map<Product>(projectDTO);
+        return await _unitOfWork.Product.Upsert(project);
+    }
+
+    public async Task<bool> DeleteProductAsync(int id)
+    {
+        return await _unitOfWork.Product.Remove(id);
+    }
     #endregion
 
     public async Task<int> CompletedAsync()

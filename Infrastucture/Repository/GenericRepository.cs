@@ -39,7 +39,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         return await dbSet.FindAsync(id);
     }
 
-    public async Task<bool> Remove(Guid id)
+    public async Task<bool> Remove(int id)
     {
         var t = await dbSet.FindAsync(id);
 
@@ -52,8 +52,33 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
             return false;
     }
 
-    public Task<bool> Upsert(T entity)
+    public async Task<bool> Upsert(T entity)
     {
-        throw new NotImplementedException();
+        try
+        {
+            var primaryKey = _context.Entry(entity).Property("Id").CurrentValue;
+
+            var existingEntity = await dbSet.FindAsync(primaryKey);
+
+            if (existingEntity != null)
+            {
+                // Entity exists, update it
+                _context.Entry(existingEntity).CurrentValues.SetValues(entity);
+            }
+            else
+            {
+                // Entity does not exist, add it
+                await dbSet.AddAsync(entity);
+            }
+
+            await _context.SaveChangesAsync();
+            return true;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error occurred while upserting entity.");
+            return false;
+        }
     }
+
 }
